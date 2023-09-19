@@ -1,0 +1,21 @@
+# Exclude Pipenv files
+Pipfile
+Pipfile.lock
+
+# Exclude virtual environment directories
+venv/
+env/
+
+# Exclude IDE-specific directories (e.g., .idea for JetBrains IDEs)
+.idea/
+
+# Exclude Visual Studio Code settings directory
+.vscode/
+
+# Exclude SQLite database file
+db.sqlite3
+
+# Exclude compiled Python files
+__pycache__/
+*.pyc
+*.pyo
