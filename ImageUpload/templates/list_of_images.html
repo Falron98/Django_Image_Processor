@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image processer</title>
+        <style>
+        .image-item {
+            display: flex; /* Use flexbox to create a horizontal layout */
+            align-items: center; /* Center vertically */
+            list-style-type: none;
+            margin-bottom: 20px; /* Add margin to create space between items */
+        }
+
+        .image-info {
+            margin-left: 20px; /* Add margin to create space between image and info */
+        }
+
+        .image-info p {
+            margin: 0; /* Remove default margin for paragraphs */
+        }
+
+        .image-info label {
+            margin-top: 10px; /* Add margin to create space between info and checkbox */
+        }
+
+        .image-info img {
+            max-width: 200px; /* Set a maximum width for the image */
+            height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <h1>List of images</h1>
+    <form method="post">
+        {% csrf_token %}
+        <ul>
+            {% for image in images %}
+                <li class="image-item">
+                    <img src="{{ image.img_file.url }}" alt="{{ image.title }}" width="200">
+                        <div class="image-info">
+                        <p>Title: {{ image.title }}</p>
+                        <p>Date: {{ image.created_at }}</p>
+                        <label for="id_to_delete_{{ image.id }}">
+                            <input type="checkbox" id="id_to_delete_{{ image.id }}" name="to_delete" value="{{ image.id }}">
+                            Delete
+                        </label>
+                        </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Delete selected images</button>
+    </form>
+    <br>
+    <form method="get" action="{% url 'form_upload' %}">
+        <button type="submit">Return</button>
+    </form>
+
+
+</body>
+</html>

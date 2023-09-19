@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image processer</title>
+</head>
+<body>
+    <h1>Image upload</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+    <form method="get" action="{% url 'list_of_files' %}">
+        <button class="btn" type="submit">Go to List of Images</button>
+    </form>
+</body>
+</html>
